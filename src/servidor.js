@@ -18,10 +18,9 @@ app.post("/", function (req, res) {
     requisicaoPost.postCadastro(req.body);
 });
 
-app.get("/cadastros", function (req, res) {
-    var cadastros = requisicaoGet.getCadastro(req.body);
-    console.log(cadastros);
-    // res.send(cadastros);
+app.get("/cadastros", async function (req, res) {
+    var cadastros = await requisicaoGet.getCadastro();
+    res.send("resposta = " + JSON.stringify(cadastros));
 });
 
 app.listen(3000, function () {

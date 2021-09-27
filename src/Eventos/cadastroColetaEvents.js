@@ -1,14 +1,18 @@
 const URL_TO_POST = "http://localhost:3000/";
 const botaoCadastrar = document.getElementById("enviar");
+const alertaSucesso = document.getElementById("alertaSucesso");
 
 botaoCadastrar.addEventListener("click", formataDados);
+
 
 function realizaRequisicaoPost(dadosInput) {
     fetch(URL_TO_POST, {
         method: "POST",
         body: JSON.stringify(dadosInput),
         headers: { "Content-Type": "application/json" },
-    }).then({});
+    }).then(
+        alertaSucesso.hidden = false
+    );
 }
 
 function formataDados(params) {
@@ -18,13 +22,17 @@ function formataDados(params) {
     let cidade = document.getElementById("cidade").value;
     let bairro = document.getElementById("bairro").value;
     let rua = document.getElementById("rua").value;
+    let frequencia = document.getElementById("frequencia").value;
     let dadosInput = {
         nome: nome,
         data: data,
+        frequencia: parseInt(frequencia),
         descricao: descricao,
-        cidade: cidade,
-        bairro: bairro,
-        rua: rua,
+        endereco: {
+            cidade: cidade,
+            bairro: bairro,
+            rua: rua,
+        },
     };
     return realizaRequisicaoPost(dadosInput);
 }

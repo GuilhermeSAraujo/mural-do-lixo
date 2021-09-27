@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Cadastro de Coleta</title>
-    </head>
 
-    <header>
-    </header>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Cadastro de Coleta</title>
+</head>
 
-    <body>
-        <label>Nome</label>
-        <input id="nome" type="text">
+<header>
+</header>
 
-        <label>Frequencia</label>
-        <input id="frequencia" type="text">
+<body>
+    <div class="alert alert-primary" role="alert" hidden id="alertaSucesso">
+        Salvo com sucesso!
+    </div>
 
-        <label>Data</label>
-        <input id="data" type="date">
+    <label>Nome</label>
+    <input id="nome" type="text">
 
-        <label>Descrição</label>
-        <input id="descricao" type="text">
+    <label>Frequencia</label>
+    <input id="frequencia" type="number">
 
-        <label>Cidade</label>
-        <input id="cidade" type="text">
+    <label>Data</label>
+    <input id="data" type="date">
 
-        <label>Bairro</label>
-        <input id="bairro" type="text">
+    <label>Descrição</label>
+    <input id="descricao" type="text">
 
-        <label>Rua</label>
-        <input id="rua" type="text">
-        
-        <button id="enviar">Cadastrar</button>
+    <label>Cidade</label>
+    <input id="cidade" type="text">
 
-        <script src="../Eventos/cadastroColetaEvents.js"></script>
-    </body>
+    <label>Bairro</label>
+    <input id="bairro" type="text">
+
+    <label>Rua</label>
+    <input id="rua" type="text">
+
+    <button id="enviar">Cadastrar</button>
+
+    <script src="../Eventos/cadastroColetaEvents.js"></script>
+</body>
+
 </html>
