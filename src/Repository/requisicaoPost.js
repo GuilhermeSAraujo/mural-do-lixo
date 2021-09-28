@@ -6,19 +6,18 @@ const uri =
 
 module.exports = {
     postCadastro: function postCadastro(requisicao) {
+        console.log(requisicao);
         mongoose.connect(uri);
         var db = mongoose.connection;
         var entidade = new CadastroModel({
             nome: requisicao.nome,
             data: requisicao.data,
+            frequencia: requisicao.frequencia,
             descricao: requisicao.descricao,
-            endereco: {
-                bairro: requisicao.bairro,
-                cidade: requisicao.cidade,
-                rua: requisicao.rua,
-            },
+            bairro: requisicao.endereco.bairro,
+            cidade: requisicao.endereco.cidade,
+            rua: requisicao.endereco.rua,
         });
         entidade.save();
-        console.log(entidade);
     },
 };

@@ -5,9 +5,8 @@ const uri =
     "mongodb+srv://guilhermeadmin:48HcxjUdkQXFGgFW@cadastrocoleta.voyjv.mongodb.net/cadastroColeta?retryWrites=true&w=majority";
 
 module.exports = {
-    getCadastro: function postCadastro(requisicao) {
+    getCadastro: async function getCadastro() {
         mongoose.connect(uri);
-        var cadastro = cadastroModel.find({});
-        return cadastro;
+        return await cadastroModel.find();
     },
 };

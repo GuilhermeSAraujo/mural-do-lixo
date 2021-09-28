@@ -1,14 +1,17 @@
 const URL_TO_GET = "http://localhost:3000/cadastros";
 window.addEventListener("load", realizaRequisicaoGet);
 
-
-function realizaRequisicaoGet(){
-    fetch(URL_TO_GET, {
+async function realizaRequisicaoGet() {
+    console.log("before call");
+    let response = await fetch(URL_TO_GET, {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
-    }).then((response) => {
-        
     });
+    let data = await response.text();
+    imprimeDadosNaTela(data);
 }
 
-
+function imprimeDadosNaTela(data){
+    var body = document.getElementById("muralCadastros");
+    var text = document.createTextNode(data)
+    body.appendChild(text);
+}
