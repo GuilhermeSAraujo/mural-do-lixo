@@ -1,18 +1,18 @@
-const URL_TO_POST = "http://localhost:3000/";
+const URL_TO_POST = "http://localhost:3000/cadastros";
 const botaoCadastrar = document.getElementById("enviar");
 const alertaSucesso = document.getElementById("alertaSucesso");
 
 botaoCadastrar.addEventListener("click", formataDados);
 
-
-function realizaRequisicaoPost(dadosInput) {
-    fetch(URL_TO_POST, {
+async function realizaRequisicaoPost(dadosInput) {
+    let response = await fetch(URL_TO_POST, {
         method: "POST",
         body: JSON.stringify(dadosInput),
         headers: { "Content-Type": "application/json" },
-    }).then(
-        alertaSucesso.hidden = false
-    );
+    });
+    if(response.ok){
+        alertaSucesso.hidden = false;
+    }
 }
 
 function formataDados(params) {
@@ -36,4 +36,3 @@ function formataDados(params) {
     };
     return realizaRequisicaoPost(dadosInput);
 }
-

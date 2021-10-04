@@ -1,10 +1,10 @@
-var express = require("express");
-var cors = require("cors");
-var bodyParser = require("body-parser");
-var requisicaoPost = require("./Repository/requisicaoPost.js");
-var requisicaoGet = require("./Repository/requisicaoGet.js");
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const CadastroController = require("./Controllers/cadastroController.js");
 
-var app = express();
+
+const app = express();
 app.use(bodyParser.json());
 
 app.use(
@@ -14,14 +14,13 @@ app.use(
     })
 );
 
-app.post("/", function (req, res) {
-    requisicaoPost.postCadastro(req.body);
-});
+const cadastroController = new CadastroController();
 
-app.get("/cadastros", async function (req, res) {
-    var cadastros = await requisicaoGet.getCadastro();
-    res.send("resposta = " + JSON.stringify(cadastros));
-});
+app.post("/cadastros", cadastroController.postCadastro);
+
+app.get("/cadastros", cadastroController.getCadastro);
+
+//app.update(atualizar cadastro)
 
 app.listen(3000, function () {
     console.log("Example app listening on port 3000.");
