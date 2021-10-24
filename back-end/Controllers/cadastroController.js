@@ -1,13 +1,13 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
 const CadastroModel = require("../Entity/cadastroColetaModel.js");
 
-const uri =
-    "mongodb+srv://guilhermeadmin:GZag5OFM54gOPvIX@cadastrocoleta.voyjv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = process.env.URI;
 
 class CadastroController {
     async getCadastro(request, response) {
         mongoose.connect(uri);
-        const cadastros = await CadastroModel.find();
+        const cadastros = await CadastroModel.find();       
         response.send(JSON.stringify(cadastros));
     }
 
