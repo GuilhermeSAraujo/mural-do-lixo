@@ -1,5 +1,5 @@
 const URL_TO_POST = "http://localhost:3000/cadastros";
-const botaoCadastrar = document.getElementById("enviar");
+const botaoCadastrar = document.getElementById("cadastrar");
 const alertaSucesso = document.getElementById("alertaSucesso");
 
 botaoCadastrar.addEventListener("click", formataDados);
@@ -10,13 +10,15 @@ async function realizaRequisicaoPost(dadosInput) {
         body: JSON.stringify(dadosInput),
         headers: { "Content-Type": "application/json" },
     });
-    if(response.ok){
-        alertaSucesso.hidden = false;
-    }
+    // if (response.ok) {
+    //     constroiAlertaSucesso();
+    // }
 }
 
-function formataDados(params) {
+function formataDados() {
     let nome = document.getElementById("nome").value;
+    let sobrenome = document.getElementById("sobrenome").value;
+    let nomeCompleto = nome + " " + sobrenome;
     let data = document.getElementById("data").value;
     let descricao = document.getElementById("descricao").value;
     let cidade = document.getElementById("cidade").value;
@@ -24,7 +26,7 @@ function formataDados(params) {
     let rua = document.getElementById("rua").value;
     let frequencia = document.getElementById("frequencia").value;
     let dadosInput = {
-        nome: nome,
+        nome: nomeCompleto,
         data: data,
         frequencia: parseInt(frequencia),
         descricao: descricao,
@@ -35,4 +37,13 @@ function formataDados(params) {
         },
     };
     return realizaRequisicaoPost(dadosInput);
+}
+
+function constroiAlertaSucesso() {
+    var divAlertaSucesso = document.createElement("div");
+    divAlertaSucesso.innerHTML = `
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+        <div>Coleta cadastrada com sucesso! Você pode checá-la no <button><a href="../Telas/muralCadastros.html">mural de cadastros</button>.</div>
+    </div>`;
+    alertaSucesso.append(divAlertaSucesso);
 }

@@ -9,10 +9,16 @@ async function realizaRequisicaoGet() {
     imprimeDadosNaTela(data);
 }
 
-function imprimeDadosNaTela(data) {
-    data = JSON.parse(data);
+function imprimeDadosNaTela(dados) {
+    dados = JSON.parse(dados);
     let body = document.getElementById("muralCadastros");
-    data.forEach((cadastro) => {
+    let container = document.createElement("div");
+    container.className = "container";
+    body.appendChild(container);
+    let linha = document.createElement("div");
+    linha.className = "row";
+    container.appendChild(linha);
+    dados.forEach((cadastro, index) => {
         let divCard = document.createElement("div");
         divCard.className = "card text-white bg-primary mb-3";
         divCard.style = "max-width: 18rem";
@@ -32,14 +38,52 @@ function imprimeDadosNaTela(data) {
         let descricao = cadastro.descricao;
         let frequencia = cadastro.frequencia;
 
-        
-        conteudoCard.textContent = "Rua " + rua + " Bairro " + bairro + " Cidade " + cidade + " Data: " + data + " Descrição: " + descricao + " Frequência: " + frequencia + "x na semana";
+        let textoCard = formataConteudoCard(
+            rua,
+            bairro,
+            cidade,
+            data,
+            descricao,
+            frequencia
+        );
+        conteudoCard.textContent = textoCard;
 
         divCard.appendChild(nomeCard);
         nomeCard.appendChild(corpoCard);
         corpoCard.appendChild(tituloCard);
         tituloCard.appendChild(conteudoCard);
-
-        body.appendChild(divCard);
+        if (index % 3 === 0) {
+            // cria nova row
+            let divColuna = document.createElement("div");
+            divColuna.className = "col";
+            linha.appendChild(divColuna);
+            divColuna.appendChild(divCard);
+            body.appendChild(linha);
+        } else {
+            let divColunaIncial = document.createElement("div");
+            divColunaIncial.className = "col";
+            linha.appendChild(divColunaIncial);
+            divColunaIncial.appendChild(divCard);
+            body.appendChild(divColunaIncial);
+        }
     });
+    console.log(body);
+}
+
+function formataConteudoCard(rua, bairro, cidade, data, descricao, frequencia) {
+    return (
+        "Rua " +
+        rua +
+        "Bairro " +
+        bairro +
+        " Cidade " +
+        cidade +
+        " Data: " +
+        new Date(data).toLocaleDateString("pt-BR") +
+        " Descrição: " +
+        descricao +
+        " Frequência: " +
+        frequencia +
+        "x por semana"
+    );
 }

@@ -11,7 +11,7 @@ class CadastroController {
         response.send(JSON.stringify(cadastros));
     }
 
-    postCadastro(request, response) {
+    async postCadastro(request, response) {
         mongoose.connect(uri);
         var db = mongoose.connection;
         var entidade = new CadastroModel({
@@ -23,7 +23,8 @@ class CadastroController {
             cidade: request.body.endereco.cidade,
             rua: request.body.endereco.rua,
         });
-        entidade.save();
+        let retorno = await entidade.save();
+        console.log(retorno);
         return response.sendStatus(201);
     }
 }

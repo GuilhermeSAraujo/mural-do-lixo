@@ -1,42 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Cadastro de Coleta</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>Cadastro de Coletas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Estilos/cadastroColeta.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <header>
+
 </header>
 
 <body>
-    <div class="alert alert-primary" role="alert" hidden id="alertaSucesso">
-        Salvo com sucesso!
+    <div id="alertaSucesso"></div>
+    <div class="signup-form">
+        <form action="/examples/actions/confirmation.php" method="post">
+            <h2>Cadastros de Coleta</h2>
+            <p>Preencha este formulário para cadastrar uma coleta!</p>
+            <hr>
+            <div class="form-group">
+                <h4></h4>
+                <div class="row">
+                    <div class="col-xs-6"><input type="text" class="form-control" name="first_name" placeholder="Nome"
+                            required="required" id="nome"></div>
+                    <div class="col-xs-6"><input type="text" class="form-control" name="last_name"
+                            placeholder="Sobrenome" required="required" id="sobrenome"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selecaoFrequencia">Frequência semanal</label>
+                <select class="form-select" aria-label="Default select example" name="selecaoFrequencia"
+                    id="frequencia">
+                    <option selected>Frequencia</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="data">Iniciar coleta à partir do dia</label>
+                <input type="date" class="form-control" name="data" required="required" id="data">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="descricao" placeholder="Descrição" id="descricao">
+            </div>
+            <div class="form-group">
+                <h4>Endereço</h4>
+                <input type="text" class="form-control" name="rua" placeholder="Rua" id="rua">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="bairro" placeholder="Bairro" id="bairro">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="cidade" placeholder="Cidade" id="cidade">
+            </div>
+           
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg" id="cadastrar">Cadastrar</button>
+            </div>
+        </form>
     </div>
-
-    <label>Nome</label>
-    <input id="nome" type="text">
-
-    <label>Frequencia</label>
-    <input id="frequencia" type="number">
-
-    <label>Data</label>
-    <input id="data" type="date">
-
-    <label>Descrição</label>
-    <input id="descricao" type="text">
-
-    <label>Cidade</label>
-    <input id="cidade" type="text">
-
-    <label>Bairro</label>
-    <input id="bairro" type="text">
-
-    <label>Rua</label>
-    <input id="rua" type="text">
-
-    <button id="enviar">Cadastrar</button>
 
     <script src="../Eventos/cadastroColetaEvents.js"></script>
 </body>
