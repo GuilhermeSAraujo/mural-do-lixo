@@ -11,7 +11,7 @@ async function realizaRequisicaoPost(dadosInput) {
         headers: { "Content-Type": "application/json" },
     });
     // if (response.ok) {
-    //     constroiAlertaSucesso();
+    //     renderizaAlertaSucesso();
     // }
 }
 
@@ -39,7 +39,7 @@ function formataDados() {
     return realizaRequisicaoPost(dadosInput);
 }
 
-function constroiAlertaSucesso() {
+function renderizaAlertaSucesso() {
     var divAlertaSucesso = document.createElement("div");
     divAlertaSucesso.innerHTML = `
     <div class="alert alert-success d-flex align-items-center" role="alert">
